@@ -1,6 +1,6 @@
 import pytest
 from django.urls import reverse
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_404_NOT_FOUND
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED,HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
 
 
 @pytest.mark.parametrize(
@@ -81,10 +81,26 @@ def test_courses_create(client):
     if response.status_code == HTTP_201_CREATED:
         assert response.data["name"] == "GYM"
 
-# @pytest.mark.django_db
-# def test_courses_update(api_client, url):
-#     pass
-#
-# @pytest.mark.django_db
-# def test_courses_delete(api_client, url):
-#     pass
+@pytest.mark.django_db
+def test_courses_update(client, course_factory):
+    courses = course_factory(_quantity=5)
+    update_data = {
+        "name": "Updatable"
+    }
+
+    url = reverse("courses-detail", args=[3])
+    response = client.patch(url, update_data)
+
+    assert response.status_code == HTTP_200_OK
+    assert response.data["name"] == update_data["name"]
+
+
+@pytest.mark.django_db
+def test_courses_delete(client, course_factory):
+    courses = course_factory(_quantity=5)
+
+    url = reverse("courses-detail", args=[3])
+    response = client.delete(url)
+
+    assert response.status_code == HTTP_204_NO_CONTENT
+    assert response.data == None
