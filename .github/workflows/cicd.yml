@@ -23,12 +23,3 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-<<<<<<< HEAD
-#      - name: Test with pytest
-#        run: pytest
-=======
-#       - name: Test with pytest
-#         run: |
-#           cd django_testing
-#           pytest
->>>>>>> 7cb6cb2bbc96381a5daa24495dabeb30d3f749ac
