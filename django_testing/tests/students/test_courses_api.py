@@ -1,6 +1,6 @@
 import pytest
 from django.urls import reverse
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED,HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
+from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND
 
 
 @pytest.mark.parametrize(

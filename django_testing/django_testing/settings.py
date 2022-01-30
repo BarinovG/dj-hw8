@@ -15,17 +15,16 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'oaamn^2=a4%p57jkt%&6rcird)lb6-#fo)^6rram7d+_@=8e38'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -73,9 +72,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'django_testing.wsgi.application'
 
-
-
-
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'netology_django_testing',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+        'USER': 'admin',
+        'PASSWORD': 'admin'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -95,7 +103,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -109,13 +116,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
 
-try:
-    from .settings_local import *
-except ImportError:
-    pass
+
+impopt django_heroku
+django_heroku.settings(locals())
+
