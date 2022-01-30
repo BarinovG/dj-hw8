@@ -19,8 +19,11 @@ jobs:
 
       - name: Install dependecies
         run: |
+          cd django_testing
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Test with pytest
-        run: pytest
+        run: |
+          cd django_testing
+          pytest
